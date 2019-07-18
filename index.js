@@ -52,6 +52,7 @@ app.use(cookieParser())
 
 // setup passport.js middleware
 
+
 // defines routes
 const defaultRouter = require('./routes/defaultRoutes')
 
