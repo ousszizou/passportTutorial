@@ -51,12 +51,21 @@ app.use(session({
 app.use(cookieParser())
 
 // setup passport.js middleware
+require('./config/passport')
+app.use(passport.initialize())
+app.use(passport.session())
 
+app.get('*', (req,res,next) =>{
+    res.locals.user = req.user || null
+    next()
+})
 
 // defines routes
 const defaultRouter = require('./routes/defaultRoutes')
+const dashboardRouter = require('./routes/authRoutes')
 
 app.use('/', defaultRouter)
+app.use('/dashboard', dashboardRouter)
 
 // define 404 middlware (page not found)
 app.use((req,res) => {

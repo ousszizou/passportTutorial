@@ -7,12 +7,16 @@
                     <%= message.msg %>
                 </div>
             <% } %>
-            <% if (type == 'sucess') { %>
+            <% if (type == 'success') { %>
                 <div class="alert alert-success">
                     <%= message %>
                 </div>
             <% } %>
+            <% if (type == 'errorlogin') { %>
+                <div class="alert alert-danger">
+                    <%= message %>
+                </div>
+            <% } %>
         <% }) %>
-        
     <% }) %>
     </div>

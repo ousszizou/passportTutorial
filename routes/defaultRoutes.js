@@ -1,6 +1,22 @@
 const router = require('express').Router()
 const bcrypt = require('bcryptjs')
 const User = require('../models/User')
+const passport = require('passport')
+
+router.get('/login', (req,res,next) =>{
+    if (req.user) {
+        res.redirect('/dashboard')
+    }
+    next()
+})
+
+router.get('/register', (req,res,next) =>{
+    if (req.user) {
+        res.redirect('/dashboard')
+    }
+    next()
+})
+
 
 /* home page */
 router.get('/', (req,res) =>{
@@ -13,6 +29,13 @@ router.get('/login', (req,res) =>{
 })
 
 /* process login */
+router.post('/login', (req,res,next) =>{
+    passport.authenticate('local', {
+        successRedirect: 'dashboard',
+        failureRedirect: 'login',
+        failureFlash: true
+    })(req,res,next)
+})
 
 /* register page */
 router.get('/register', (req,res) =>{
